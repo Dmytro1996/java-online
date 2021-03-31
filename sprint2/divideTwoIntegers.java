@@ -1,10 +1,10 @@
 class Solution {
     public int divide(int dividend, int divisor) {        
-        String dividendAsStr=""+Math.abs((long)dividend);        
+        String dividendAsStr=String.valueOf(Math.abs((long)dividend));        
         int beginIndex=0;
-        int endIndex=new String(""+Math.abs((long)divisor)).length();
+        int endIndex=String.valueOf(Math.abs((long)divisor)).length();
         long remainder=0;
-        String resultAsStr="";
+        StringBuilder resultAsStr=new StringBuilder();
         while(endIndex<=dividendAsStr.length()){
             long currentDividend=0;
             if(beginIndex==0){ 
@@ -22,13 +22,13 @@ class Solution {
                 resultOfDiv++;
             }            
             endIndex++;
-            resultAsStr+=resultOfDiv;
+            resultAsStr.append(resultOfDiv);
             remainder=currentDividend;            
         }
-        if(resultAsStr.isEmpty()){
+        if(resultAsStr.length()==0){
             return 0;
         }
-        long result=Long.valueOf(resultAsStr);
+        long result=Long.valueOf(resultAsStr.toString());
         if((dividend<0 && divisor>0) || (dividend>0 && divisor<0)){
             result*=-1;
         }
